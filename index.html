@@ -3,43 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Jogo da Cobra</title>
+    <title>Old Snake - Edição Completa com Áudio MP3 + Sintetizado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=play_circle" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
-        <!-- Tela de Início (Start Screen) -->
+        <div class="toast-achievement" id="toastAchievement">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <div class="toast-text">
+                <span class="toast-title">Conquista Desbloqueada!</span>
+                <span class="toast-name" id="toastName">Nome da Conquista</span>
+            </div>
+        </div>
+
         <div class="overlay-screen start-screen">
-            <span class="game-title">Old Snake</span>
-            <button class="btn-action btn-start">
-                <span class="material-symbols-outlined">play_circle</span>
-                JOGAR
+            <span class="game-title">Old<br>Snake</span>
+            <div class="menu-buttons">
+                <button class="btn-action btn-start">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    JOGAR
+                </button>
+                <button class="btn-action btn-secondary btn-open-skins">
+                    <span class="material-symbols-outlined">palette</span>
+                    SKINS
+                </button>
+                <button class="btn-action btn-secondary btn-open-achievements">
+                    <span class="material-symbols-outlined">trophy</span>
+                    CONQUISTAS
+                </button>
+            </div>
+        </div>
+
+        <div class="overlay-screen skins-screen">
+            <span class="overlay-title">ESCOLHER SKIN</span>
+            <div class="panel-content skins-grid" id="skinsContainer"></div>
+            <button class="btn-action btn-secondary btn-close-overlay">
+                <span class="material-symbols-outlined">arrow_back</span>
+                VOLTAR
             </button>
         </div>
 
-        <!-- Tela de Game Over -->
+        <div class="overlay-screen achievements-screen">
+            <span class="overlay-title">CONQUISTAS</span>
+            <div class="panel-content achievements-list" id="achievementsContainer"></div>
+            <button class="btn-action btn-secondary btn-close-overlay">
+                <span class="material-symbols-outlined">arrow_back</span>
+                VOLTAR
+            </button>
+        </div>
+
+        <div class="overlay-screen pause-screen">
+            <span class="overlay-title">JOGO PAUSADO</span>
+            <div class="menu-buttons">
+                <button class="btn-action btn-resume">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                    CONTINUAR
+                </button>
+                <button class="btn-action btn-secondary btn-quit-to-menu">
+                    <span class="material-symbols-outlined">home</span>
+                    MENU PRINCIPAL
+                </button>
+            </div>
+        </div>
+
         <div class="overlay-screen menu-screen">
             <span class="game-over">GAME OVER</span>
             <div class="final-score-container">
                 <span class="final-score">SCORE:</span>
                 <span>00</span>
             </div>
-
-            <button class="btn-action btn-play">
-                <span class="material-symbols-outlined">play_circle</span>
-                JOGAR NOVAMENTE
-            </button>
+            <div class="menu-buttons">
+                <button class="btn-action btn-play">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    JOGAR NOVAMENTE
+                </button>
+                <button class="btn-action btn-secondary btn-quit-to-menu">
+                    <span class="material-symbols-outlined">home</span>
+                    MENU PRINCIPAL
+                </button>
+            </div>
         </div>
 
-        <!-- Placar e Área de Jogo -->
-        <div class="score">SCORE: <span class="score--value">00</span></div>
-        <canvas height="600" width="600"></canvas>
+        <div class="top-bar">
+            <div class="scores-wrapper">
+                <div class="score">SCORE: <span class="score--value">00</span></div>
+                <div class="high-score">BEST: <span class="high-score--value">00</span></div>
+            </div>
+            <div class="hud-buttons">
+                <button class="btn-pause-hud btn-fullscreen" id="btnFullscreen" aria-label="Tela Cheia">
+                    <span class="material-symbols-outlined">fullscreen</span>
+                </button>
+                <button class="btn-pause-hud" id="btnPauseHud" aria-label="Pausar Jogo">
+                    <span class="material-symbols-outlined">pause</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="canvas-wrapper">
+            <canvas height="600" width="600"></canvas>
+        </div>
+
+        <div class="dpad" aria-hidden="true">
+            <button class="dpad-btn dpad-up" data-dir="up" aria-label="Cima">&#8593;</button>
+            <button class="dpad-btn dpad-left" data-dir="left" aria-label="Esquerda">&#8592;</button>
+            <button class="dpad-btn dpad-right" data-dir="right" aria-label="Direita">&#8594;</button>
+            <button class="dpad-btn dpad-down" data-dir="down" aria-label="Baixo">&#8595;</button>
+        </div>
     </div>
 
-    <script src="js/script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>

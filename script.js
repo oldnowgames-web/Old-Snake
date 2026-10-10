@@ -839,29 +839,5 @@ document.addEventListener("touchend", (e) => {
     touchStartY = 0;
 }, { passive: true });
 
-const dpadButtons = document.querySelectorAll(".dpad-btn");
-const setDirection = (dir) => {
-    if (!isGameRunning || isPaused) return;
-    let targetDir = null;
-
-    if (dir === "right" && direction !== "left") targetDir = "right";
-    if (dir === "left" && direction !== "right") targetDir = "left";
-    if (dir === "up" && direction !== "down") targetDir = "down";
-    if (dir === "down" && direction !== "up") targetDir = "down";
-
-    if (targetDir && targetDir !== nextDirection) {
-        nextDirection = targetDir;
-        playSound('move');
-    }
-};
-
-dpadButtons.forEach((btn) => {
-    btn.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        setDirection(btn.dataset.dir);
-    }, { passive: false });
-    btn.addEventListener("click", () => setDirection(btn.dataset.dir));
-});
-
 loadAchievements();
 gameLoop();
